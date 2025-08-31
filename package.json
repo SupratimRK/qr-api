@@ -1,0 +1,31 @@
+{
+  "name": "qr-api",
+  "version": "1.0.0",
+  "description": "QR Code API compatible with goqr.me API for Cloudflare Workers",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest"
+  },
+  "keywords": [
+    "qr-code",
+    "api",
+    "cloudflare-workers",
+    "qr-generator"
+  ],
+  "author": "Suuppratim Mondal",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250831.0",
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
+  "wrangler": "^4.33.1"
+  },
+  "dependencies": {
+  "@types/qrcode-generator": "^1.0.6",
+  "qrcode-generator": "^2.0.4",
+  "upng-js": "^2.1.0"
+  }
+}
