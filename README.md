@@ -15,13 +15,19 @@ QR Code generation API for Cloudflare Workers. PNG is the default output; SVG is
 
 ### Generate QR Code
 ```
-GET/POST /
+GET / POST /
+```
+```
+https://qr-api.supratimrk.workers.dev/
 ```
 Provide parameters via query string (GET) or body (POST). If the same parameter appears in both places, the GET value wins (as implemented in `src/index.ts`).
 
 ### API Information
 ```
 GET /info
+```
+```
+https://qr-api.supratimrk.workers.dev/info
 ```
 
 ## Parameters
@@ -48,9 +54,10 @@ Notes:
 ## Usage Examples
 
 ### Basic QR Code
-```bash
-curl "https://qr-api.supratimrk.workers.dev/?data=Hello%20World!"
-```
+[
+https://qr-api.supratimrk.workers.dev/?data=Hello%20World!"
+](https://qr-api.supratimrk.workers.dev/?data=Hello%20World!)
+
 
 PowerShell (Windows):
 ```powershell
@@ -58,9 +65,7 @@ Invoke-WebRequest -UseBasicParsing "https://qr-api.supratimrk.workers.dev/?data=
 ```
 
 ### Custom Size and Colors
-```bash
-curl "https://qr-api.supratimrk.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff"
-```
+[https://qr-api.supratimrk.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff](https://qr-api.supratimrk.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff)
 
 PowerShell:
 ```powershell
@@ -68,9 +73,8 @@ Invoke-WebRequest -UseBasicParsing "https://qr-api.supratimrk.workers.dev/?data=
 ```
 
 ### SVG Format with High Error Correction
-```bash
-curl "https://qr-api.supratimrk.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4"
-```
+
+[https://qr-api.supratimrk.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4](https://qr-api.supratimrk.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4)
 
 PowerShell:
 ```powershell
@@ -89,6 +93,71 @@ JSON body:
 curl -X POST "https://qr-api.supratimrk.workers.dev/" \
   -H "Content-Type: application/json" \
   -d '{"data":"Hello JSON","size":"220x220","format":"png"}'
+```
+
+## Code Examples
+
+### JavaScript/TypeScript
+
+```javascript
+// Using Node.js
+const fs = require('fs');
+const https = require('https');
+
+const url = 'https://qr-api.supratimrk.workers.dev/?data=Hello%20World!';
+
+https.get(url, (res) => {
+  const fileStream = fs.createWriteStream('hello.png');
+  res.pipe(fileStream);
+  fileStream.on('finish', () => {
+    fileStream.close();
+    console.log('QR code saved as hello.png');
+  });
+}).on('error', (err) => {
+  console.error('Error downloading QR code:', err);
+});
+```
+
+### Python
+
+```python
+import requests
+
+url = 'https://qr-api.supratimrk.workers.dev/?data=Hello%20World!'
+response = requests.get(url)
+
+if response.status_code == 200:
+    with open('hello.png', 'wb') as f:
+        f.write(response.content)
+    print('QR code saved as hello.png')
+else:
+    print('Error downloading QR code')
+```
+
+### Java
+
+```java
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+public class QRDownloader {
+    public static void main(String[] args) {
+        String url = "https://qr-api.supratimrk.workers.dev/?data=Hello%20World!";
+        try (InputStream in = new URL(url).openStream();
+             FileOutputStream out = new FileOutputStream("hello.png")) {
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            System.out.println("QR code saved as hello.png");
+        } catch (IOException e) {
+            System.err.println("Error downloading QR code: " + e.getMessage());
+        }
+    }
+}
 ```
 
 ## Color Formats
