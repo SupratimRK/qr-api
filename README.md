@@ -49,44 +49,44 @@ Notes:
 
 ### Basic QR Code
 ```bash
-curl "https://your-worker.workers.dev/?data=Hello%20World!"
+curl "https://qr-api.supratimrk.workers.dev/?data=Hello%20World!"
 ```
 
 PowerShell (Windows):
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://your-worker.workers.dev/?data=Hello%20World!" -OutFile hello.png
+Invoke-WebRequest -UseBasicParsing "https://qr-api.supratimrk.workers.dev/?data=Hello%20World!" -OutFile hello.png
 ```
 
 ### Custom Size and Colors
 ```bash
-curl "https://your-worker.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff"
+curl "https://qr-api.supratimrk.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff"
 ```
 
 PowerShell:
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://your-worker.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff" -OutFile site.png
+Invoke-WebRequest -UseBasicParsing "https://qr-api.supratimrk.workers.dev/?data=https://example.com&size=300x300&color=ff0000&bgcolor=ffffff" -OutFile site.png
 ```
 
 ### SVG Format with High Error Correction
 ```bash
-curl "https://your-worker.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4"
+curl "https://qr-api.supratimrk.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4"
 ```
 
 PowerShell:
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://your-worker.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4" -OutFile code.svg
+Invoke-WebRequest -UseBasicParsing "https://qr-api.supratimrk.workers.dev/?data=Important%20Data&format=svg&ecc=H&qzone=4" -OutFile code.svg
 ```
 
 ### POST Request Example
 ```bash
-curl -X POST "https://your-worker.workers.dev/" \
+curl -X POST "https://qr-api.supratimrk.workers.dev/" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "data=Hello%20World&size=250x250&color=0-0-255"
 ```
 
 JSON body:
 ```bash
-curl -X POST "https://your-worker.workers.dev/" \
+curl -X POST "https://qr-api.supratimrk.workers.dev/" \
   -H "Content-Type: application/json" \
   -d '{"data":"Hello JSON","size":"220x220","format":"png"}'
 ```
